@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/usrname6/Documents/Visual Studio 2015/Projects/WinterCode/WinterCode/Content/test1.png</File>
+    <File>C:/Users/usrname6/Documents/Visual Studio 2015/Projects/WinterCode/WinterCode/Content/test2.png</File>
+    <File>C:/Users/usrname6/Documents/Visual Studio 2015/Projects/WinterCode/WinterCode/Content/test3.png</File>
+    <File>C:/Users/usrname6/Documents/Visual Studio 2015/Projects/WinterCode/WinterCode/Content/nullItem.png</File>
+    <File>C:/Users/usrname6/Documents/Visual Studio 2015/Projects/WinterCode/WinterCode/Content/debugfont.spritefont</File>
+    <File>C:/Users/usrname6/Documents/Visual Studio 2015/Projects/WinterCode/WinterCode/Content/empty.png</File>
+    <File>C:/Users/usrname6/Documents/Visual Studio 2015/Projects/WinterCode/WinterCode/Content/hotbar.png</File>
+    <File>C:/Users/usrname6/Documents/Visual Studio 2015/Projects/WinterCode/WinterCode/Content/hotbarSelector.png</File>
+    <File>C:/Users/usrname6/Documents/Visual Studio 2015/Projects/WinterCode/WinterCode/Content/tileset.png</File>
+  </SourceFiles>
+</SourceFileCollection>
