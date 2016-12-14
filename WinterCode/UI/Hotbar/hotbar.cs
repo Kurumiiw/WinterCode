@@ -79,11 +79,16 @@ namespace WinterCode
                 for (int i = 0; i < 9; i++)
                 {
                     sb.Draw(items[slots[i]].getTexture(), new Rectangle((Window.ClientBounds.Width / 2 - 174) + 40 * i, Window.ClientBounds.Height - 38, 32, 32), Color.White);
+                    if(counts[i] != 0)
+                        TextHandler.drawTextWithOutline(sb, ft, new Vector2((Window.ClientBounds.Width / 2 - 174) + 40 * i, Window.ClientBounds.Height - 19), 1, counts[i] + "");
                 }
 
                 TextHandler.drawTextWithOutline(sb, ft, new Vector2(0, Window.ClientBounds.Height - 30), 1, "Count:" + counts[selectPos]);
                 TextHandler.drawTextWithOutline(sb, ft, new Vector2(0, Window.ClientBounds.Height - 15), 1, "item.ID:" + items[slots[selectPos]].getId());
-                TextHandler.drawTextWithOutline(sb, ft, new Vector2((Window.ClientBounds.Width / 2) - 185 + (40 * selectPos), Window.ClientBounds.Height - 64), 1, items[slots[selectPos]].getName());
+                if(items[slots[selectPos]].getId() != 0)
+                {
+                    TextHandler.drawTextWithOutline(sb, ft, new Vector2((Window.ClientBounds.Width / 2) - 185 + (40 * selectPos), Window.ClientBounds.Height - 64), 1, items[slots[selectPos]].getName());
+                }
             }
         }
 
