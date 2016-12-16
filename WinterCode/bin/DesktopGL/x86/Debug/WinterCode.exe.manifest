@@ -67,6 +67,18 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Newtonsoft.Json.dll" size="532992">
+      <assemblyIdentity name="Newtonsoft.Json" version="9.0.0.0" publicKeyToken="30AD4FE6B2A6AEED" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>3NY+gYswSjFpO/s/LLm+3dbfeoCNqDLvxKTll7xmeWc=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NVorbis.dll" size="68096">
       <assemblyIdentity name="NVorbis" version="0.8.4.0" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -91,14 +103,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WinterCode.exe" size="312304">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WinterCode.exe" size="312816">
       <assemblyIdentity name="WinterCode" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>QPF2u3GqBlJWFbahfao3xdvOQSkbTpV7tOAvqtR/1s4=</dsig:DigestValue>
+        <dsig:DigestValue>sGCeyp3s6cDmeuIf56GIPl+etwBjJ6RbFWn/s/l/K4c=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -199,6 +211,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>ZNDA9WJzV+kDR9kMK+i09MNOLNY7HMuIq5CgQ8Wyo3U=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="World Handling\Levels\levelTest.txt" size="19550">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>92PHA3UBKC0yN7SzVrrnfyWp3068kcmE0ep7x+Lt/Nk=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

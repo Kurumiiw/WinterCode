@@ -10,13 +10,12 @@ namespace WinterCode
 {
     class World
     {
-        public Tile[,] map;
+        public int[,] map;
         public int mapSize;
         public int id;
         public Texture2D tileset;
         public String name;
-
-        public World(Tile[,] map, int mapSize, int id, Texture2D tileset, String name)
+        public World(int[,] map, int mapSize, int id, Texture2D tileset, String name)
         {
             this.map = map;
             this.mapSize = mapSize;
@@ -25,84 +24,99 @@ namespace WinterCode
             this.name = name;
         }
 
-        public void drawWorld(SpriteBatch sb, Tile[] tiles)
+        public void drawWorld(SpriteBatch sb, Tile[] tiles, GameWindow Window)
         {
             for (int x = 0; x < mapSize; x++)
             {
                 for (int y = 0; y < mapSize; y++)
                 {
-                    if (map[y, x] == tiles[0])
+                    if (x * 32 < Window.ClientBounds.Width)
                     {
-                        sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(0, 0), Color.White);
-                    }
-                    else
-                    {
-                        if (map[y, x] == tiles[1])
+                        if (y * 32 < Window.ClientBounds.Height)
                         {
-                            sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(1, 0), Color.White);
-                        }
-                        else
-                        {
-                            if (map[y, x] == tiles[2])
+                            if (map[y, x] == 0)
                             {
-                                sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(2, 0), Color.White);
+                                sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(0, 0), Color.White);
                             }
                             else
                             {
-                                if (map[y, x] == tiles[3])
+                                if (map[y, x] == 1)
                                 {
-                                    sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(3, 0), Color.White);
+                                    sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(1, 0), Color.White);
                                 }
                                 else
                                 {
-                                    if (map[y, x] == tiles[4])
+                                    if (map[y, x] == 2)
                                     {
-                                        sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(1, 1), Color.White);
-                                    }else
+                                        sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(2, 0), Color.White);
+                                    }
+                                    else
                                     {
-                                        if(map[y, x] == tiles[5])
+                                        if (map[y, x] == 3)
                                         {
-                                            sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(2, 1), Color.White);
-                                        }else
+                                            sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(3, 0), Color.White);
+                                        }
+                                        else
                                         {
-                                            if (map[y, x] == tiles[6])
+                                            if (map[y, x] == 4)
                                             {
-                                                sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(3, 1), Color.White);
-                                            }else
+                                                sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(1, 1), Color.White);
+                                            }
+                                            else
                                             {
-                                                if (map[y, x] == tiles[7])
+                                                if (map[y, x] == 5)
                                                 {
-                                                    sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(1, 2), Color.White);
-                                                }else
+                                                    sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(2, 1), Color.White);
+                                                }
+                                                else
                                                 {
-                                                    if (map[y, x] == tiles[8])
+                                                    if (map[y, x] == 6)
                                                     {
-                                                        sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(1, 3), Color.White);
-                                                    }else
+                                                        sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(3, 1), Color.White);
+                                                    }
+                                                    else
                                                     {
-                                                        if (map[y, x] == tiles[9])
+                                                        if (map[y, x] == 7)
                                                         {
-                                                            sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(6, 0), Color.White);
-                                                        }else
+                                                            sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(1, 2), Color.White);
+                                                        }
+                                                        else
                                                         {
-                                                            if (map[y, x] == tiles[10])
+                                                            if (map[y, x] == 8)
                                                             {
-                                                                sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(5, 0), Color.White);
-                                                            }else
+                                                                sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(1, 3), Color.White);
+                                                            }
+                                                            else
                                                             {
-                                                                if (map[y, x] == tiles[11])
+                                                                if (map[y, x] == 9)
                                                                 {
-                                                                    sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(5, 0), Color.White);
-                                                                }else
+                                                                    sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(6, 0), Color.White);
+                                                                }
+                                                                else
                                                                 {
-                                                                    if (map[y, x] == tiles[12])
+                                                                    if (map[y, x] == 10)
                                                                     {
-                                                                        sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(4, 1), Color.White);
-                                                                    }else
+                                                                        sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(5, 0), Color.White);
+                                                                    }
+                                                                    else
                                                                     {
-                                                                        if (map[y, x] == tiles[13])
+                                                                        if (map[y, x] == 11)
                                                                         {
-                                                                            sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(5, 1), Color.White);
+                                                                            sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(5, 0), Color.White);
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            if (map[y, x] == 12)
+                                                                            {
+                                                                                sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(4, 1), Color.White);
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                if (map[y, x] == 13)
+                                                                                {
+                                                                                    sb.Draw(tileset, new Rectangle(x * 32, y * 32, 32, 32), Tilesheets.getFromCoords(5, 1), Color.White);
+                                                                                }
+                                                                            }
                                                                         }
                                                                     }
                                                                 }
@@ -121,7 +135,7 @@ namespace WinterCode
             }
         }
 
-        public Tile[,] getMap()
+        public int[,] getMap()
         {
             return map;
         }

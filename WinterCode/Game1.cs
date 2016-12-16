@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using WinterCode.UI.Text;
+using WinterCode.World_Handling;
 
 namespace WinterCode
 {
@@ -24,29 +25,31 @@ namespace WinterCode
         public SpriteFont debug;
 
         WorldHandler worldHandler;
+        IOHandler IOHandler = new IOHandler();
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             IsMouseVisible = true;
             Content.RootDirectory = "Content";
+            this.Window.AllowUserResizing = true;
         }
 
         protected override void Initialize()
         {
             water = new Tile(0, "Water", false);
-            sand_top = new Tile(1, "Sand", true);
-            sand_TRcorner = new Tile(2, "Sand", true);
-            sand_TLcorner = new Tile(3, "Sand", true);
-            sand_left = new Tile(11, "Sand", true);
-            sand_BLcorner = new Tile(12, "Sand", true);
-            sand_BRcorner = new Tile(13, "Sand", true);
-            sand_right = new Tile(21, "Sand", true);
-            sand_down = new Tile(31, "Sand", true);
-            sand = new Tile(6, "Sand", true);
-            sand_RBLcorner = new Tile(15, "Sand", true);
-            sand_RBRcorner = new Tile(16, "Sand", true);
-            sand_RTRcorner = new Tile(4, "Sand", true);
-            sand_RTLcorner = new Tile(5, "Sand", true);
+            sand_top = new Tile(1, "sand_top", true);
+            sand_TRcorner = new Tile(2, "sand_topright_corner", true);
+            sand_TLcorner = new Tile(3, "sand_topleft_corner", true);
+            sand_left = new Tile(11, "sand_left", true);
+            sand_BLcorner = new Tile(12, "sand_bottomleft_corner", true);
+            sand_BRcorner = new Tile(13, "sand_bottomright_corner", true);
+            sand_right = new Tile(21, "sand_right", true);
+            sand_down = new Tile(31, "sand_down", true);
+            sand = new Tile(6, "sand", true);
+            sand_RBLcorner = new Tile(15, "sand_revered_bottomleft_corner", true);
+            sand_RBRcorner = new Tile(16, "sand_revered_bottomright_corner", true);
+            sand_RTRcorner = new Tile(4, "sand_revered_topright_corner", true);
+            sand_RTLcorner = new Tile(5, "sand_revered_topleft_corner", true);
 
             tiles = new Tile[] { water, sand_top, sand_TRcorner, sand_TLcorner, sand_left, sand_BLcorner, sand_BRcorner, sand_right, sand_down, sand, sand_RTLcorner, sand_RTRcorner, sand_RBLcorner, sand_RBRcorner};
 
@@ -89,13 +92,13 @@ namespace WinterCode
             inv.update(gameTime);
             // TODO: Add your update logic here
             if (Keyboard.GetState().IsKeyDown(Keys.I))
-                hotbar.addItem(test1, 1);
-
-            if (Keyboard.GetState().IsKeyDown(Keys.O))
-                hotbar.addItem(test2, 1);
+                hotbar.addItem(test1, 5);
 
             if (Keyboard.GetState().IsKeyDown(Keys.P))
                 hotbar.addItem(test3, 1);
+
+            if (Keyboard.GetState().IsKeyDown(Keys.K))
+                hotbar.addItemOnto(test2, 1);
 
             if (Keyboard.GetState().IsKeyDown(Keys.L))
                 hotbar.removeItem(hotbar.selectPos, 1);
@@ -105,15 +108,15 @@ namespace WinterCode
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
 
-            worldHandler.draw(spriteBatch);
+            worldHandler.draw(spriteBatch, Window);
 
             hotbar.draw(spriteBatch, debug);
             hotbarSel.draw(spriteBatch, debug);
             inv.draw(spriteBatch);
 
-            TextHandler.drawTextWithOutline(spriteBatch, debug, new Vector2(0, 0), 2, "dev release 03 - 'worldbuilding'");
+            TextHandler.drawTextWithOutline(spriteBatch, debug, new Vector2(0, 0), 2, "dev release 04 - 'item manager and world making'");
             spriteBatch.End();
             base.Draw(gameTime);
         }

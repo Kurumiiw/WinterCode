@@ -11,7 +11,6 @@ namespace WinterCode
     class inventory
     {
         GameWindow Window;
-        public int[,] inventoryArray = new int[,] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
         public inventory(GameWindow Window)
         {
             this.Window = Window;

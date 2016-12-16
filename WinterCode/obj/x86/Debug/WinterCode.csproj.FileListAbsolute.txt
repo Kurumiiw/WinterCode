@@ -21,3 +21,6 @@ C:\Users\usrname6\Documents\Visual Studio 2015\Projects\WinterCode\WinterCode\bi
 C:\Users\usrname6\Documents\Visual Studio 2015\Projects\WinterCode\WinterCode\obj\x86\Debug\WinterCode.exe.manifest
 C:\Users\usrname6\Documents\Visual Studio 2015\Projects\WinterCode\WinterCode\obj\x86\Debug\WinterCode.application
 C:\Users\usrname6\Documents\Visual Studio 2015\Projects\WinterCode\WinterCode\bin\DesktopGL\x86\Debug\Content\tileset.xnb
+C:\Users\usrname6\Documents\Visual Studio 2015\Projects\WinterCode\WinterCode\bin\DesktopGL\x86\Debug\Newtonsoft.Json.dll
+C:\Users\usrname6\Documents\Visual Studio 2015\Projects\WinterCode\WinterCode\bin\DesktopGL\x86\Debug\Newtonsoft.Json.xml
+C:\Users\usrname6\Documents\Visual Studio 2015\Projects\WinterCode\WinterCode\bin\DesktopGL\x86\Debug\World Handling\Levels\levelTest.txt
