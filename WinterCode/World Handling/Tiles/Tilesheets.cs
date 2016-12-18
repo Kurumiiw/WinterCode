@@ -9,7 +9,7 @@ namespace WinterCode
 {
     class Tilesheets
     {
-        public Rectangle getFromTilesheet(int tileId, int tilesheet)
+        public static Rectangle getFromTilesheet(int tileId, int tilesheet)
         {
             switch (tilesheet)
             {
@@ -78,6 +78,8 @@ namespace WinterCode
                             }
                         }
                    }
+                case 1:
+                    return new Rectangle(32 * tileId, 32 * tileId, 32, 32);
               }
          }
 

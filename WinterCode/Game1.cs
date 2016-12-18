@@ -1,8 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using WinterCode.UI;
 using WinterCode.UI.Text;
 using WinterCode.World_Handling;
+using WinterCode.World_Handling.Tiles;
 
 namespace WinterCode
 {
@@ -19,13 +22,20 @@ namespace WinterCode
 
         inventory inv;
 
-        static Item noItem, nullItem, test1, test2, test3;
+        static Item noItem, test1, test2, test3;
         static Tile water, sand_top, sand_left, sand_right, sand_down, sand_TRcorner, sand_TLcorner, sand_BRcorner, sand_BLcorner, sand, sand_RTRcorner, sand_RTLcorner, sand_RBRcorner, sand_RBLcorner;
         static Tile[] tiles;
         public SpriteFont debug;
 
         WorldHandler worldHandler;
         IOHandler IOHandler = new IOHandler();
+
+        public static Camera2D _camera;
+
+        public static Animation waterAnimation;
+        public static Animation grassAnimation;
+
+        public static Texture2D itemSpritesheet;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -36,7 +46,9 @@ namespace WinterCode
 
         protected override void Initialize()
         {
-            water = new Tile(0, "Water", false);
+            _camera = new Camera2D(GraphicsDevice.Viewport);
+
+            water = new Tile(0, "water", false);
             sand_top = new Tile(1, "sand_top", true);
             sand_TRcorner = new Tile(2, "sand_topright_corner", true);
             sand_TLcorner = new Tile(3, "sand_topleft_corner", true);
@@ -53,6 +65,7 @@ namespace WinterCode
 
             tiles = new Tile[] { water, sand_top, sand_TRcorner, sand_TLcorner, sand_left, sand_BLcorner, sand_BRcorner, sand_right, sand_down, sand, sand_RTLcorner, sand_RTRcorner, sand_RBLcorner, sand_RBRcorner};
 
+
             base.Initialize();
         }
 
@@ -60,22 +73,22 @@ namespace WinterCode
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            itemSpritesheet = Content.Load<Texture2D>("Spritesheets/items");
             inv = new inventory(Window);
-            noItem = new Item(Content.Load<Texture2D>("empty"), 0, 12, "NoItem");
-            nullItem = new Item(Content.Load<Texture2D>("nullItem"), 1, 12, "nullItem");
-            test1 = new Item(Content.Load<Texture2D>("test1"), 2, 12, "test item 1");
-            test2 = new Item(Content.Load<Texture2D>("test2"), 3, 12, "test item 2");
-            test3 = new Item(Content.Load<Texture2D>("test3"), 4, 12, "test item 3");
+            noItem = new Item(0, 12, "NoItem");
+            test1 = new Item(1, 12, "test item 1");
+            test2 = new Item(2, 12, "test item 2");
+            test3 = new Item(3, 12, "test item 3");
 
-            Item[] items = { noItem, nullItem, test1, test2, test3 };
+            Item[] items = { noItem, test1, test2, test3 };
 
-            hotbar = new hotbar(Content.Load<Texture2D>("hotbar"), new Rectangle((Window.ClientBounds.Width / 2 - 100), (Window.ClientBounds.Height - 44), 364, 44), false, Window, items);
-            hotbarSel = new hotbar(Content.Load<Texture2D>("hotbarSelector"), new Rectangle((Window.ClientBounds.Width / 2 - 102), (Window.ClientBounds.Height - 46), 48, 48), true, Window, items);
+            hotbar = new hotbar(Content.Load<Texture2D>("Spritesheets/ui"), new Rectangle((Window.ClientBounds.Width / 2 - 100), (Window.ClientBounds.Height - 44), 364, 44), false, Window, items);
+            hotbarSel = new hotbar(Content.Load<Texture2D>("Spritesheets/ui"), new Rectangle((Window.ClientBounds.Width / 2 - 102), (Window.ClientBounds.Height - 46), 48, 48), true, Window, items);
 
-            debug = Content.Load<SpriteFont>("debugfont");
-
-            worldHandler = new WorldHandler(Content.Load<Texture2D>("tileset"), tiles);
+            debug = Content.Load<SpriteFont>("Fonts/debugfont");
+            waterAnimation = new Animation(spriteBatch, Content.Load<Texture2D>("Animations/water_animation"), 8, 0.2f);
+            grassAnimation = new Animation(spriteBatch, Content.Load<Texture2D>("Animations/grass_animation"), 8, 0.3f);
+            worldHandler = new WorldHandler(Content.Load<Texture2D>("Spritesheets/tileset"), tiles);
         }
 
         protected override void UnloadContent()
@@ -85,6 +98,7 @@ namespace WinterCode
 
         protected override void Update(GameTime gameTime)
         {
+            var deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             hotbar.update(gameTime);
@@ -103,20 +117,52 @@ namespace WinterCode
             if (Keyboard.GetState().IsKeyDown(Keys.L))
                 hotbar.removeItem(hotbar.selectPos, 1);
 
+            int boost = 1;
+            //cameradebugging
+            if (Keyboard.GetState().IsKeyDown(Keys.LeftShift))
+            {
+                boost = 3;
+            }else
+            {
+                boost = 1;
+            }
+
+                
+
+            if (Keyboard.GetState().IsKeyDown(Keys.W))
+                _camera.Position -= new Vector2(0, 50 * boost) * deltaTime;
+
+            if (Keyboard.GetState().IsKeyDown(Keys.A))
+                _camera.Position -= new Vector2(50 * boost, 0) * deltaTime;
+
+            if (Keyboard.GetState().IsKeyDown(Keys.S))
+                _camera.Position += new Vector2(0, 50 * boost) * deltaTime;
+
+            if (Keyboard.GetState().IsKeyDown(Keys.D))
+                _camera.Position += new Vector2(50 * boost, 0) * deltaTime;
+
+            waterAnimation.updateAnimation(gameTime);
+            grassAnimation.updateAnimation(gameTime);
             base.Update(gameTime);
         }
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            var viewMatrix = _camera.GetViewMatrix();
+            //NonUI things, like World
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, transformMatrix: viewMatrix);
+
+            worldHandler.draw(spriteBatch, Window, gameTime);
+
+            spriteBatch.End();
+            //UI
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-
-            worldHandler.draw(spriteBatch, Window);
-
             hotbar.draw(spriteBatch, debug);
             hotbarSel.draw(spriteBatch, debug);
             inv.draw(spriteBatch);
 
-            TextHandler.drawTextWithOutline(spriteBatch, debug, new Vector2(0, 0), 2, "dev release 04 - 'item manager and world making'");
+            TextHandler.drawTextWithOutline(spriteBatch, debug, new Vector2(0, 0), 2, "FPS:" + Math.Round(1/((float)gameTime.ElapsedGameTime.TotalSeconds)));
+            TextHandler.drawTextWithOutline(spriteBatch, debug, new Vector2(0, 15), 2, "dev release 06 - 'animatronic images'");
             spriteBatch.End();
             base.Draw(gameTime);
         }

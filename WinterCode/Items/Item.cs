@@ -9,22 +9,14 @@ namespace WinterCode
 {
     class Item
     {
-        Texture2D texture;
         int id;
         int MaxStack;
         String name;
-        public Item(Texture2D texture, int id, int MaxStack, String name)
+        public Item( int id, int MaxStack, String name)
         {
-            this.texture = texture;
             this.id = id;
             this.MaxStack = MaxStack;
             this.name = name;
-        }
-
-
-        public Texture2D getTexture()
-        {
-            return this.texture;
         }
 
         public int getId()

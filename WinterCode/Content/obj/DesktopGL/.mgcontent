@@ -4,14 +4,11 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/usrname6/Documents/Visual Studio 2015/Projects/WinterCode/WinterCode/Content/test1.png</File>
-    <File>C:/Users/usrname6/Documents/Visual Studio 2015/Projects/WinterCode/WinterCode/Content/test2.png</File>
-    <File>C:/Users/usrname6/Documents/Visual Studio 2015/Projects/WinterCode/WinterCode/Content/test3.png</File>
-    <File>C:/Users/usrname6/Documents/Visual Studio 2015/Projects/WinterCode/WinterCode/Content/nullItem.png</File>
-    <File>C:/Users/usrname6/Documents/Visual Studio 2015/Projects/WinterCode/WinterCode/Content/debugfont.spritefont</File>
-    <File>C:/Users/usrname6/Documents/Visual Studio 2015/Projects/WinterCode/WinterCode/Content/empty.png</File>
-    <File>C:/Users/usrname6/Documents/Visual Studio 2015/Projects/WinterCode/WinterCode/Content/hotbar.png</File>
-    <File>C:/Users/usrname6/Documents/Visual Studio 2015/Projects/WinterCode/WinterCode/Content/hotbarSelector.png</File>
-    <File>C:/Users/usrname6/Documents/Visual Studio 2015/Projects/WinterCode/WinterCode/Content/tileset.png</File>
+    <File>C:/Users/usrname6/Documents/Visual Studio 2015/Projects/WinterCode/WinterCode/Content/Animations/water_animation.png</File>
+    <File>C:/Users/usrname6/Documents/Visual Studio 2015/Projects/WinterCode/WinterCode/Content/Animations/grass_animation.png</File>
+    <File>C:/Users/usrname6/Documents/Visual Studio 2015/Projects/WinterCode/WinterCode/Content/Spritesheets/tileset.png</File>
+    <File>C:/Users/usrname6/Documents/Visual Studio 2015/Projects/WinterCode/WinterCode/Content/Spritesheets/ui.png</File>
+    <File>C:/Users/usrname6/Documents/Visual Studio 2015/Projects/WinterCode/WinterCode/Content/Spritesheets/items.png</File>
+    <File>C:/Users/usrname6/Documents/Visual Studio 2015/Projects/WinterCode/WinterCode/Content/Fonts/debugfont.spritefont</File>
   </SourceFiles>
 </SourceFileCollection>

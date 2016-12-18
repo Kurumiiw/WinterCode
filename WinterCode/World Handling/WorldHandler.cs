@@ -20,13 +20,13 @@ namespace WinterCode
         {
             this.tiles = tiles;
             world0Map = IOHandler.loadLevelFromFile("World Handling/Levels/levelTest.txt");
-            world0 = new World(world0Map, 80, 0, tileset, "Island World");
+            world0 = new World(world0Map, 70, 0, tileset, "Island World");
             worlds = new World[] { world0 };
         }
 
-        public void draw(SpriteBatch sb, GameWindow w)
+        public void draw(SpriteBatch sb, GameWindow w, GameTime gt)
         {
-            world0.drawWorld(sb, tiles, w);
+            world0.drawWorld(sb, tiles, w, gt);
         }
     }
 }

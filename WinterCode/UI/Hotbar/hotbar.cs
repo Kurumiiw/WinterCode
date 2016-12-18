@@ -103,14 +103,15 @@ namespace WinterCode
 
         public void draw(SpriteBatch sb, SpriteFont ft)
         {
-            elem.draw(sb);
+
 
             if(isSelector == false)
             {
+                elem.draw(sb, new Rectangle(0, 0, 364, 44));
                 for (int i = 0; i < 9; i++)
                 {
-                    sb.Draw(items[slots[i]].getTexture(), new Rectangle((Window.ClientBounds.Width / 2 - 176) + 40 * i, Window.ClientBounds.Height - 38, 32, 32), Color.White);
-                    if(counts[i] != 0)
+                    sb.Draw(Game1.itemSpritesheet, new Rectangle((Window.ClientBounds.Width / 2 - 176) + 40 * i, Window.ClientBounds.Height - 38, 32, 32), new Rectangle(32 * items[slots[i]].getId(), 0, 32, 32), Color.White);
+                    if(counts[i] > 0)
                         TextHandler.drawTextWithOutline(sb, ft, new Vector2((Window.ClientBounds.Width / 2 - 174) + 40 * i, Window.ClientBounds.Height - 19), 1, counts[i] + "");
                 }
 
@@ -120,6 +121,9 @@ namespace WinterCode
                 {
                     TextHandler.drawTextWithOutline(sb, ft, new Vector2((Window.ClientBounds.Width / 2) - 185 + (40 * selectPos), Window.ClientBounds.Height - 64), 1, items[slots[selectPos]].getName());
                 }
+            }else
+            {
+                elem.draw(sb, new Rectangle(384, 0, 48, 48));
             }
         }
 
@@ -127,8 +131,7 @@ namespace WinterCode
         {
             if(isSelector == false)
             {
-                sb.Draw(items[id].getTexture(), new Rectangle((Window.ClientBounds.Width / 2 - 174) + 40 * slot, Window.ClientBounds.Height - 38, 32, 32), Color.White);
-                
+                sb.Draw(Game1.itemSpritesheet, new Rectangle((Window.ClientBounds.Width / 2 - 174) + 40 * slot, Window.ClientBounds.Height - 38, 32, 32), new Rectangle(32 * id, 0, 32, 32), Color.White);
             }
         }
 

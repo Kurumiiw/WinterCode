@@ -18,9 +18,9 @@ namespace WinterCode
             this.pos = pos;
         }
 
-        public void draw(SpriteBatch sb)
+        public void draw(SpriteBatch sb, Rectangle sourceRectangle)
         {
-            sb.Draw(texture, pos, Color.White);
+            sb.Draw(texture, pos, sourceRectangle, Color.White);
         }
 
         public void update(GameTime gt, Rectangle pos)
